@@ -1,0 +1,32 @@
+#!/bin/bash
+
+DIR="$1"
+MOUNTDIR="/run/user/$UID/root/${DIR//\//_}"
+L="$0"
+
+trap cleanup EXIT
+
+function cleanup {
+  rm -R $MOUNTDIR 2>/dev/null
+}
+
+if [ -d "$1" ];then
+  if [ -d "$MOUNTDIR" ];then
+    echo "E:mount dir exists already"
+    exit 1
+  fi
+
+  mkdir -p $MOUNTDIR 2>/dev/null
+
+  echo "D:$DIR"
+  echo "X:password"
+  export LANG=C
+  sudo -kS sh -c "echo \"P:$MOUNTDIR\";exec bindfs -f -u $USER \"$DIR\" \"$MOUNTDIR\""
+  if [ $? -ne 0 ];then
+    echo "E:invalid password"
+    exit 1
+  fi
+else
+  echo "E: $DIR is not a directory"
+  exit 1
+fi
