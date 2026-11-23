@@ -107,9 +107,9 @@ BOOL hasFSTab(NSDictionary* props) {
   [self refreshDrives];
 }
 
-- (BOOL) applicationShouldTerminate: (id)sender {
+- (NSApplicationTerminateReply) applicationShouldTerminate: (NSApplication *)sender {
   [services stopAllServices];
-  return YES;
+  return NSTerminateNow;
 }
 
 - (void) applicationWillTerminate: (NSNotification *)aNotif {

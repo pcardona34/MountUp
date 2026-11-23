@@ -72,7 +72,8 @@
   return nil;
 }
 
-- (void) execTask {
+- (void) execTask
+{
   NSArray* args = [self serviceTaskArguments];
   NSString* exec = [self serviceTaskExec];
   
@@ -137,30 +138,6 @@
 
   NSLog(@"terminated");
 }
-
-/*- (void) dataReceived:(NSNotification*) not {
-  NSData* data = [[not userInfo] objectForKey:NSFileHandleNotificationDataItem];
-
-  char* bytes = [data bytes];
-  NSInteger sz = [data length];
-  NSInteger c = 0;
-
-  NSInteger i;
-  for (i = 0; i < sz; i++) {
-    if (*(bytes+i) == '\n') {
-      [buff appendBytes:bytes+c length:i-c];
-      NSString* line = [[NSString alloc] initWithData:buff encoding:[NSString defaultCStringEncoding]];
-      [self processLine:line];
-      [line release];
-      [buff setLength:0];
-      c = i+1;
-    }
-  }
-  if (c < sz) {
-    [buff appendBytes:bytes+c length:sz - c];
-  }
-  [fh readInBackgroundAndNotify];
-}*/
 
 - (void) dataReceived:(NSNotification *) notification 
 {

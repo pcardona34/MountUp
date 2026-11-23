@@ -48,7 +48,7 @@
 - (NSString*) askForPasswordWithMessage:(NSString*) msg;
 
 - (void) applicationDidFinishLaunching: (NSNotification *)aNotif;
-- (BOOL) applicationShouldTerminate: (id)sender;
+//- (NSApplicationTerminateReply) applicationShouldTerminate: (NSApplication *)sender;
 - (void) applicationWillTerminate: (NSNotification *)aNotif;
 - (BOOL) application: (NSApplication *)application
 	    openFile: (NSString *)fileName;
