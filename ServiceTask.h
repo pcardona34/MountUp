@@ -55,6 +55,8 @@
 - (void) startTask;
 - (void) stopTask;
 
+- (void) dataReceived:(NSNotification *) notification;
+
 @end
 
 #endif // _SERVICETASK_H_

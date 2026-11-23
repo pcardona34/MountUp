@@ -1,7 +1,7 @@
 /* 
    Project: MountUp
 
-   Author: Ondrej Florian,,,
+   Author: Ondrej Florian
 
    Created: 2023-08-09 19:25:27 +0000 by oflorian
    

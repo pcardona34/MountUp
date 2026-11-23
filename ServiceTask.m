@@ -162,15 +162,20 @@
   [fh readInBackgroundAndNotify];
 }*/
 
-- (void)dataReceived:(NSNotification *)notification {
+- (void) dataReceived:(NSNotification *) notification 
+{
   NSData *data = [[notification userInfo]
       objectForKey:NSFileHandleNotificationDataItem];
 
-  const char *bytes = data.bytes;
-  NSUInteger sz = data.length;
+  //char* bytes = [data bytes]; // Changed type
+  const char *bytes = [data bytes];
+  NSUInteger sz = [data length];
   NSUInteger c = 0;
-
-  for (NSUInteger i = 0; i < sz; i++) {
+  
+  NSUInteger i;
+  for (i = 0; i < sz; i++) {
+    
+    //if (*(bytes+i) == '\n') {	 // bytes is an array
     if (bytes[i] == '\n') {
       [buff appendBytes:bytes + c length:i - c];
 

@@ -1,0 +1,75 @@
+{
+  ApplicationName = "MountUp";
+  ApplicationDescription = "Removable Disk Manager";
+  ApplicationRelease = "0.2";
+  Authors = ("Ondrej Florian for gs-desktop", 
+             "Patrick Cardona porting to Agnostep and Localization");
+  Copyright = "(c) 2023-2026 Ondrej Florian";
+  CopyrightDescription = "Released under MIT License";
+  ApplicationIcon = "MountUp.tiff";
+  CFBundleURLTypes = (
+	{
+	    CFBundleURLName = "Network Drive URL";
+	    CFBundleURLSchemes = (
+		smb,
+		dav,
+		davs,
+		sftp,
+		gitfs
+	    );
+	},
+	{
+	    CFBundleURLName = "mount path as root";
+	    CFBundleURLSchemes = (
+		admin
+	    );
+	}
+    );
+    NSExecutable = MountUp;
+    NSIcon = "MountUp.tiff";
+    NSMainNibFile = "MountUp.gorm";
+    NSPrincipalClass = NSApplication;
+    NSRole = Application;
+    NSServices = (
+	{
+	    NSMenuItem = {
+		default = "Mount/Network Address";
+	    };
+	    NSMessage = mountNetworkService;
+	    NSPortName = MountUp;
+	    NSSendTypes = (
+		NSStringPboardType
+	    );
+	},
+	{
+	    NSMenuItem = {
+		default = "Mount/Directory as Root";
+	    };
+	    NSMessage = mountDirectoryService;
+	    NSPortName = MountUp;
+	    NSSendTypes = (
+		NSFilenamesPboardType
+	    );
+	}
+    );
+    NSTypes = (
+	{
+	    NSIcon = "disk_image.tiff";
+	    NSUnixExtensions = (
+		img
+	    );
+	},
+	{
+	    NSIcon = "disk_image.tiff";
+	    NSUnixExtensions = (
+		dmg
+	    );
+	},
+	{
+	    NSIcon = "disk_image.tiff";
+	    NSUnixExtensions = (
+		iso
+	    );
+	}
+    );
+}
